@@ -1,5 +1,6 @@
 "use client";
 
+import { limitOne, getEndpoints } from "./api/home/route";
 import React, { useState } from "react";
 import "./globals.css";
 import RootLayout, { metadata } from "./layout";
@@ -22,75 +23,30 @@ import {
   SelectValue,
 } from "../components/ui/select";
 
-require("dotenv").config();
-
-const pathBase = "https://ui.endpoints.huggingface.co/api/v2/endpoint/";
-
-async function limitOne(endpointPath, token) {
-  try {
-    console.log(endpointPath);
-    const response = await fetch(endpointPath, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        compute: { scaling: { minReplica: 0, maxReplica: 1 } },
-      }),
-    });
-    console.log("endpoint limited");
-    const data = await response.json();
-    console.log(data.name);
-    return data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-}
-
-async function getEndpoints(org, token) {
-  try {
-    const path = pathBase + `${org}`;
-    console.log("getEndpoints:", path);
-    const response = await fetch(path, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-}
-
-async function limitAll(org, token) {
-  const data = await getEndpoints(`${org}`, `${token}`);
-  data.items.map((endpoint) => {
-    limitOne(pathBase + `${org}` + "/" + endpoint.name, `${token}`);
-  });
-
-  console.log("limit all endpoints");
-}
-
-function executeAndSleep(org, token) {
-  if (!org) {
-    console.log("please provide an org name as an argument");
-    return;
-  } else {
-    limitAll(`${org}`, `${token}`);
-    const interval = 15 * 60 * 1000; // 15 minutes
-    setInterval(() => {
-      limitAll(`${org}`, `${token}`);
-    }, interval);
-  }
-}
-
 export default function CardWithForm() {
   const [name, setName] = useState("");
   const [token, setToken] = useState("");
+
+  const handleDeployClick = async () => {
+    if (!name || !token) {
+      console.log("name: ", name, "token: ", token);
+      console.log("Please provide both name and token");
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/home?name=${name}&token=${token}`, {
+        method: "GET",
+      });
+      if (response.ok) {
+        console.log("Endpoints limited successfully");
+      } else {
+        console.error("Failed to limit endpoints");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -123,9 +79,12 @@ export default function CardWithForm() {
         </CardContent>
         <CardFooter className="flex justify-between">
           <Button variant="outline">Stop</Button>
-          <Button onClick={() => executeAndSleep(name, token)}>Deploy</Button>
+          <Button onClick={() => handleDeployClick()}>Deploy</Button>
         </CardFooter>
       </Card>
     </div>
   );
+}
+function express() {
+  throw new Error("Function not implemented.");
 }
