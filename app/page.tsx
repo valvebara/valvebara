@@ -1,6 +1,5 @@
 "use client";
 
-import { limitOne, getEndpoints } from "./api/home/route";
 import React, { useState } from "react";
 import "./globals.css";
 import RootLayout, { metadata } from "./layout";

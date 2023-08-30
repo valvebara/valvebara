@@ -63,6 +63,3 @@ export async function GET(req: NextRequest) {
 
   console.log("successfully limited all endpoints");
 }
-
-// Export all functions as an object
-export { limitOne, getEndpoints };
