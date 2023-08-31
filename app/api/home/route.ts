@@ -6,7 +6,7 @@ const pathBase = "https://ui.endpoints.huggingface.co/api/v2/endpoint/";
 
 async function limitOne(endpointPath, token) {
   try {
-    console.log(endpointPath);
+    console.log("token:", token);
     const response = await fetch(endpointPath, {
       method: "PUT",
       headers: {
@@ -62,4 +62,5 @@ export async function GET(req: NextRequest) {
   }
 
   console.log("successfully limited all endpoints");
+  return {};
 }
