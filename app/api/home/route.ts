@@ -6,7 +6,7 @@ const pathBase = "https://ui.endpoints.huggingface.co/api/v2/endpoint/";
 
 async function limitOne(endpointPath, token) {
   try {
-    console.log("token:", token);
+    console.log("aim to limit token:", token);
     const response = await fetch(endpointPath, {
       method: "PUT",
       headers: {
@@ -17,7 +17,7 @@ async function limitOne(endpointPath, token) {
         compute: { scaling: { minReplica: 0, maxReplica: 1 } },
       }),
     });
-    console.log("endpoint limited");
+    console.log("this endpoint is limited");
     const data = await response.json();
     console.log(data.name);
     return data;
@@ -29,7 +29,6 @@ async function limitOne(endpointPath, token) {
 async function getEndpoints(org, token) {
   try {
     const path = pathBase + `${org}`;
-    console.log("getEndpoints:", path);
     const response = await fetch(path, {
       method: "GET",
       headers: {
@@ -46,21 +45,22 @@ async function getEndpoints(org, token) {
 }
 
 export async function GET(req: NextRequest) {
-  const url = new URL(req.url);
-  const searchParams = url.searchParams;
-  const name = searchParams.get("name") || ""; // Get the 'name' query parameter
-  const token = searchParams.get("token") || ""; // Get the 'token' query parameter
-  console.log(name);
-  console.log(token);
+  try {
+    const url = new URL(req.url);
+    const searchParams = url.searchParams;
+    const name = searchParams.get("name") || ""; // Get the 'name' query parameter
+    const token = searchParams.get("token") || ""; // Get the 'token' query parameter
 
-  const data = await getEndpoints(name, token);
-  console.log("endpoints:", data);
-  if (data) {
-    data.items.map((endpoint) => {
-      limitOne(pathBase + name + "/" + endpoint.name, token);
+    const data = await getEndpoints(name, token);
+    if (data) {
+      data.items.map((endpoint) => {
+        limitOne(pathBase + name + "/" + endpoint.name, token);
+      });
+    }
+    return new Response("success limiting all endpoints", {
+      status: 200,
     });
+  } catch (error) {
+    console.error("Error limiting all endpoints:", error);
   }
-
-  console.log("successfully limited all endpoints");
-  return {};
 }
