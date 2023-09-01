@@ -34,8 +34,12 @@ export default function CardWithForm() {
     }
 
     try {
-      const response = await fetch(`/api/home?name=${name}&token=${token}`, {
-        method: "GET",
+      const response = await fetch(`/api/home`, {
+        method: "POST",
+        body: JSON.stringify({ name, token }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       if (response.ok) {
         console.log("Endpoints limited successfully");
@@ -84,6 +88,7 @@ export default function CardWithForm() {
     </div>
   );
 }
+
 function express() {
   throw new Error("Function not implemented.");
 }
