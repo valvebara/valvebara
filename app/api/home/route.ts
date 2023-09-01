@@ -1,7 +1,7 @@
 // api/huggingface.js
 
 import { NextRequest } from "next/server";
-import { writeConfig } from "@/hf_valve/lib/config";
+import { writeConfig } from "@/lib/config";
 
 export async function POST(req: NextRequest) {
   try {

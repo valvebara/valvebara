@@ -1,5 +1,5 @@
-import { readConfig } from "@/hf_valve/lib/config";
-import { limitAll } from "@/hf_valve/lib/hf-endpoints";
+import { readConfig } from "@/lib/config";
+import { limitAll } from "@/lib/hf-endpoints";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request, response: Response) {
