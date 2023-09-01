@@ -34,8 +34,7 @@ export default function CardWithForm() {
               <div className="flex items-center justify-center">
                 <span className="text-2xl">⚠️</span>
                 <span className="ml-2">
-                  Please add <code>HF_TOKEN</code> and <code>HF_NAME</code> in
-                  vercel project{" "}
+                  Please add <code>HF_TOKEN</code> and <code>HF_NAME</code> to{" "}
                   <Link
                     href="https://vercel.com/docs/projects/environment-variables"
                     target="_blank"
@@ -43,7 +42,8 @@ export default function CardWithForm() {
                   >
                     Environment Variables
                   </Link>{" "}
-                  setting
+                  in
+                  vercel project setting
                 </span>
               </div>
             )
