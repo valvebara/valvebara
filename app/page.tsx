@@ -16,10 +16,13 @@ export default function CardWithForm() {
     typeof process.env.HF_NAME !== "undefined";
   return (
     <div className="flex items-center justify-center h-screen">
-      <Card className="w-[400px]">
+      <Card className="w-auto">
         <CardHeader>
           <CardTitle>Valve</CardTitle>
-          <CardDescription>Safeguard your money in one-click</CardDescription>
+          <CardDescription>
+            Cut down your <code>AI Inference</code> costs in a matter of
+            minutes!
+          </CardDescription>
         </CardHeader>
         <CardContent>
           {configReady ? (
