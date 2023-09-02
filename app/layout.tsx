@@ -1,7 +1,7 @@
 import React from "react";
 
 export const metadata = {
-  title: "Valve",
+  title: "Valve - Cut down your AI Inference costs in a matter of minutes!",
   description: "Cut down your AI Inference costs in a matter of minutes!",
 };
 
