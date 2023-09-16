@@ -1,9 +1,13 @@
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { Metadata } from "next";
 
-export const metadata = {
-  title: "Valve - Cut down your AI Inference costs in a matter of minutes!",
-  description: "Cut down your AI Inference costs in a matter of minutes!",
+const slogan = "No more huggingface cost leaks!";
+
+export const metadata: Metadata = {
+  title: `Valve - ${slogan}`,
+  description: slogan,
+  keywords: [""],
 };
 
 export default function RootLayout({

@@ -1,6 +1,6 @@
 # Valve
 
-Cut down your AI Inference costs in a matter of minutes!
+No more [huggingface](https://hf.co) cost leaks.
 
 # Deploy your own Valve in minutes
 
