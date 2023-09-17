@@ -20,8 +20,7 @@ export default function CardWithForm() {
         <CardHeader>
           <CardTitle>Valve</CardTitle>
           <CardDescription>
-            Cut down your <code>AI Inference</code> costs in a matter of
-            minutes!
+            No more huggingface cost leaks.
           </CardDescription>
         </CardHeader>
         <CardContent>
