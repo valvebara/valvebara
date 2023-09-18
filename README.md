@@ -1,6 +1,6 @@
 # Valve
 
-No more [huggingface](https://hf.co) cost leaks.
+No more [Hugging Face](https://hf.co) cost leaks.
 
 # Deploy your own Valve in minutes
 
