@@ -16,17 +16,24 @@ export default function CardWithForm() {
     typeof process.env.HF_NAME !== "undefined";
   return (
     <div className="flex items-center justify-center h-screen">
-      <Card className="w-auto">
+      <Card className="w-auto z-10">
         <CardHeader>
           <CardTitle>Valve</CardTitle>
           <CardDescription>
-            No more huggingface cost leaks.
+            No more{" "}
+            <Link
+              href="https://hf.co"
+              target="_blank"
+              className="text-blue-500"
+            >
+              Hugging Face
+            </Link>{" "}
+            cost leaks.
           </CardDescription>
         </CardHeader>
         <CardContent>
           {configReady ? (
             <div className="flex items-center justify-center">
-              <Confetti />
               <span className="text-2xl">🎉 All Set</span>
             </div>
           ) : (
@@ -47,6 +54,7 @@ export default function CardWithForm() {
           )}
         </CardContent>
       </Card>
+      {configReady && <Confetti />}
     </div>
   );
 }

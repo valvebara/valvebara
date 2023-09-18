@@ -2,7 +2,7 @@ import React from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 
-const slogan = "No more huggingface cost leaks!";
+const slogan = "No more Hugging Face cost leaks!";
 
 export const metadata: Metadata = {
   title: `Valve - ${slogan}`,

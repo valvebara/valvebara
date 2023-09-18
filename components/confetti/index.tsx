@@ -18,5 +18,5 @@ export default function Confetti() {
       });
     }
   }, []);
-  return <canvas ref={ref} className="fixed w-full h-full" />;
+  return <canvas ref={ref} className="fixed w-full h-full z-0" />;
 }
