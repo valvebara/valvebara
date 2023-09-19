@@ -38,7 +38,6 @@ body {
 .logo {
   margin-top: 1rem;
   margin-left: 4rem;
-  height: 60px;
 }
 
 .buttons {
@@ -364,8 +363,8 @@ ul {
 }
 
 .bottom_logo {
-  height: 40px;
-  margin: 0 2rem 0 3rem;
+  width: 220px;
+  margin-left: 3rem;
 }
 
 .social_links {
