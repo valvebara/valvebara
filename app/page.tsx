@@ -1,4 +1,8 @@
 import { Figtree } from "next/font/google";
+import clsx from "clsx";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
 const figtree = Figtree({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -7,36 +11,71 @@ const figtree = Figtree({
 
 function Header() {
   return (
-    <div className="top_header">
-      <img className="logo" src="/Assets/Valve Logo.svg" alt="" />
-      <div className="buttons">
-        <button className="login">Log In</button>
-        <button className="signup">Sign Up</button>
-        <button className="getstarted">Get Started</button>
+    <div className="flex justify-between">
+      <img
+        className="mt-4 h-14"
+        src="/images/valvebara-logo.png"
+        alt="Valvebara Logo"
+      />
+      <div className="flex gap-2 mt-8">
+        <Link href="/login">
+          <button className="flex w-24 h-10 px-2 py-4 justify-center items-center flex-shrink-0 text-white text-base hover:text-[#ffffff84] font-medium">
+            Log In
+          </button>
+        </Link>
+        <Link href="/signup">
+          <button className="flex w-24 h-10 px-2 py-4 justify-center items-center flex-shrink-0 bg-[#6d28d9] rounded-[16px] text-white text-base font-medium transition-colors hover:bg-[#6c28d983] hover:text-[#ffffff84]">
+            Sign Up
+          </button>
+        </Link>
       </div>
     </div>
   );
 }
 
-export default function CardWithForm() {
+function Bakcgounrd() {
+  return (
+    <img
+      className="w-[70%] h-full fixed top-0 left-0 right-0 bottom-0 rotate-[4deg] translate-x-[50%] pointer-events-none"
+      src="/images/arc-blur.svg"
+      alt="Blur Arc Background"
+    />
+  );
+}
+
+function Badge() {
+  return (
+    <Link
+      href="https://www.producthunt.com/@valvebara"
+      className="text-white text-sm rounded-full border border-[#353947] py-1 px-1 inline-flex items-center"
+    >
+      <span className="rounded-full bg-[#32343d] py-1 px-2 mr-2">🎉 New</span>
+      We are live on Product Hunt!
+      <ArrowRight strokeWidth={1} size="1.5em" className="mx-2" />
+    </Link>
+  );
+}
+
+export default function Home() {
   const toggleMenu = () => {};
   return (
-    <div className={figtree.className}>
-      <img className="blur" src="/Assets/Arc_blur.svg" alt="" />
-
-      <div className="main_wrapper">
+    <div
+      className={clsx(
+        figtree.className,
+        "relative bg-[#020202] min-h-screen overflow-hidden "
+      )}
+    >
+      <Bakcgounrd />
+      <div className="block mx-16 z-1">
         <Header />
-
-        <img className="divider" src="/Assets/Divider.svg" alt="" />
-
         <div className="mid_section">
-          <div className="hero_a">
-            <img className="info_badge" src="/Assets/Info badge.svg" alt="" />
-            <h1 className="Hero_text">
+          <div className="mt-16">
+            <Badge />
+            <h1 className="text-8xl not-italic font-bold mt-4 w-[8em]  text-white break-words leading-[96px]">
               Manage your Subscription based billing
             </h1>
-            <p className="body_text">
-              Valve is a free and open-source project that helps you manage
+            <p className="text-xl not-italic font-normal mt-4 text-[#fdfdfda3] w-[26em]">
+              Valvebara is a free and open-source project that helps you manage
               subscription-based billing to save on costs.
             </p>
             <div className="hero_buttons">
@@ -57,15 +96,15 @@ export default function CardWithForm() {
             <div className="hero_b_container">
               <div className="hero_b_container_top">
                 <div className="menu">
-                  <div className="item active">What is Valve?</div>
-                  <div className="item">Why Valve?</div>
+                  <div className="item active">What is Valvebara?</div>
+                  <div className="item">Why Valvebara?</div>
                   <div className="item">Get Started</div>
                   <div className="active-bar"></div>
                 </div>
 
                 <div className="menu_mobile">
-                  <div className="item active">What is Valve?</div>
-                  <div className="item">Why Valve?</div>
+                  <div className="item active">What is Valvebara?</div>
+                  <div className="item">Why Valvebara?</div>
                   <div className="active-bar"></div>
                 </div>
               </div>
@@ -78,7 +117,7 @@ export default function CardWithForm() {
 
               <div className="hero_b_container_body">
                 <h3 className="hero_b_header">
-                  Introducing Valve{" "}
+                  Introducing Valvebara{" "}
                   <span>
                     <img
                       className="btn_icon_item"
@@ -88,8 +127,8 @@ export default function CardWithForm() {
                   </span>
                 </h3>
                 <p className="hero_b_text">
-                  Valve is a free and open-source project that helps you manage
-                  subscription-based billing to save on costs.
+                  Valvebara is a free and open-source project that helps you
+                  manage subscription-based billing to save on costs.
                 </p>
               </div>
 
