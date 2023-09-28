@@ -1,6 +1,7 @@
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
 
@@ -35,7 +36,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <body>{children}</body>
+      </ThemeProvider>
       <Analytics />
     </html>
   );

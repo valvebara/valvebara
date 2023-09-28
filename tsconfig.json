@@ -3,7 +3,6 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@/components/*": ["components/*"],
       "@/lib/*": ["lib/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
