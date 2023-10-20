@@ -1,64 +1,214 @@
-import React from "react";
-import "./globals.css";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Figtree } from "next/font/google";
+import clsx from "clsx";
 import Link from "next/link";
-import Confetti from "@/components/confetti";
+import { ArrowRight } from "lucide-react";
 
-export default function CardWithForm() {
-  const configReady: boolean =
-    typeof process.env.HF_TOKEN !== "undefined" &&
-    typeof process.env.HF_NAME !== "undefined";
+const figtree = Figtree({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+function Header() {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <Card className="w-auto z-10">
-        <CardHeader>
-          <CardTitle>Valve</CardTitle>
-          <CardDescription>
-            No more{" "}
-            <Link
-              href="https://hf.co"
-              target="_blank"
-              className="text-blue-500"
-            >
-              Hugging Face
-            </Link>{" "}
-            cost leaks.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {configReady ? (
-            <div className="flex items-center justify-center">
-              <span className="text-2xl">🎉 All Set</span>
-            </div>
-          ) : (
-            <div className="flex items-center justify-center">
-              <span className="text-2xl">⚠️</span>
-              <span className="ml-2">
-                Please add <code>HF_TOKEN</code> and <code>HF_NAME</code> to{" "}
-                <Link
-                  href="https://vercel.com/docs/projects/environment-variables"
-                  target="_blank"
-                  className="text-blue-500"
-                >
-                  Environment Variables
-                </Link>{" "}
-                in vercel project setting
-              </span>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-      {configReady && <Confetti />}
+    <div className="flex justify-between">
+      <img
+        className="mt-4 h-14"
+        src="/images/valvebara-logo.png"
+        alt="Valvebara Logo"
+      />
+      <div className="flex gap-2 mt-8">
+        <Link href="/login">
+          <button className="flex w-24 h-10 px-2 py-4 justify-center items-center flex-shrink-0 text-white text-base hover:text-[#ffffff84] font-medium">
+            Log In
+          </button>
+        </Link>
+        <Link href="/signup">
+          <button className="flex w-24 h-10 px-2 py-4 justify-center items-center flex-shrink-0 bg-[#6d28d9] rounded-[16px] text-white text-base font-medium transition-colors hover:bg-[#6c28d983] hover:text-[#ffffff84]">
+            Sign Up
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
 
-function express() {
-  throw new Error("Function not implemented.");
+function Bakcgounrd() {
+  return (
+    <img
+      className="w-[70%] h-full fixed top-0 left-0 right-0 bottom-0 rotate-[4deg] translate-x-[50%] pointer-events-none"
+      src="/images/arc-blur.svg"
+      alt="Blur Arc Background"
+    />
+  );
+}
+
+function Badge() {
+  return (
+    <Link
+      href="https://www.producthunt.com/@valvebara"
+      className="text-white text-sm rounded-full border border-[#353947] py-1 px-1 inline-flex items-center"
+    >
+      <span className="rounded-full bg-[#32343d] py-1 px-2 mr-2">🎉 New</span>
+      We are live on Product Hunt!
+      <ArrowRight strokeWidth={1} size="1.5em" className="mx-2" />
+    </Link>
+  );
+}
+
+export default function Home() {
+  const toggleMenu = () => {};
+  return (
+    <div
+      className={clsx(
+        figtree.className,
+        "relative bg-[#020202] min-h-screen overflow-hidden "
+      )}
+    >
+      <Bakcgounrd />
+      <div className="block mx-16 z-1">
+        <Header />
+        <div className="mid_section">
+          <div className="mt-16">
+            <Badge />
+            <h1 className="text-8xl not-italic font-bold mt-4 w-[8em]  text-white break-words leading-[96px]">
+              Manage your Subscription based billing
+            </h1>
+            <p className="text-xl not-italic font-normal mt-4 text-[#fdfdfda3] w-[26em]">
+              Valvebara is a free and open-source project that helps you manage
+              subscription-based billing to save on costs.
+            </p>
+            <div className="hero_buttons">
+              <button className="docs_button">Read Docs</button>
+              <button className="deploy_button">
+                <span className="btn_icon">
+                  <img
+                    className="btn_icon_item"
+                    src="/Assets/btn_icon.svg"
+                    alt=""
+                  />
+                </span>
+                Deploy to Vercel
+              </button>
+            </div>
+          </div>
+          <div className="hero_b">
+            <div className="hero_b_container">
+              <div className="hero_b_container_top">
+                <div className="menu">
+                  <div className="item active">What is Valvebara?</div>
+                  <div className="item">Why Valvebara?</div>
+                  <div className="item">Get Started</div>
+                  <div className="active-bar"></div>
+                </div>
+
+                <div className="menu_mobile">
+                  <div className="item active">What is Valvebara?</div>
+                  <div className="item">Why Valvebara?</div>
+                  <div className="active-bar"></div>
+                </div>
+              </div>
+
+              <img
+                className="divider_short"
+                src="/Assets/short_divider.svg"
+                alt=""
+              />
+
+              <div className="hero_b_container_body">
+                <h3 className="hero_b_header">
+                  Introducing Valvebara{" "}
+                  <span>
+                    <img
+                      className="btn_icon_item"
+                      src="/Assets/Sparkle.svg"
+                      alt=""
+                    />
+                  </span>
+                </h3>
+                <p className="hero_b_text">
+                  Valvebara is a free and open-source project that helps you
+                  manage subscription-based billing to save on costs.
+                </p>
+              </div>
+
+              <div className="breakdown_container">
+                <div className="breakdown">
+                  <span className="breakdown_icon">
+                    <img src="/Assets/description_icon_cost.svg" alt="" />
+                  </span>{" "}
+                  <p className="breakdown_text">
+                    Cut down AI Inference costs in minutes
+                  </p>
+                </div>
+                <div className="breakdown">
+                  <span className="breakdown_icon">
+                    <img src="/Assets/description_icon_control.svg" alt="" />
+                  </span>{" "}
+                  <p className="breakdown_text">
+                    Control center for all your subscriptions
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="compatible_projects">
+              <img
+                className="compatible_projects_img"
+                src="/Assets/Compatible_projects.svg"
+                alt=""
+              />
+            </div>
+
+            <div className="compatible_projects_mobile">
+              <img
+                className="compatible_projects_mobile_img"
+                src="/Assets/projects_mobile.svg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="bottom_section">
+          <img className="bottom_logo" src="/Assets/Valve Logo.svg" alt="" />
+          <ul className="bottom_menu">
+            <li className="bottom_menu_item">
+              <a className="link_item" href="url">
+                Documentation
+              </a>
+            </li>
+            <li className="bottom_menu_item">
+              <a className="link_item" href="url">
+                Contribution
+              </a>
+            </li>
+            <li className="bottom_menu_item">
+              <a className="link_item" href="url">
+                Terms of Service
+              </a>
+            </li>
+          </ul>
+
+          <div className="social_links">
+            <img
+              className="social_links_item"
+              src="/Assets/github.svg"
+              alt=""
+            />
+            <img
+              className="social_links_item"
+              src="/Assets/discord.svg"
+              alt=""
+            />
+            <img
+              className="social_links_item"
+              src="/Assets/twitter.svg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

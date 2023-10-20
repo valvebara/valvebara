@@ -2,12 +2,30 @@ import React from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 
-const slogan = "No more Hugging Face cost leaks!";
+import "./globals.css";
+
+const title = "Valvebara - No more Hugging Face cost leaks.";
+const description =
+  "Valvebara is open-source project that helps you manage subscription-based billing to save on costs.";
 
 export const metadata: Metadata = {
-  title: `Valve - ${slogan}`,
-  description: slogan,
-  keywords: [""],
+  title: {
+    template: "%s - No more Hugging Face cost leaks.",
+    default: title,
+  },
+  description,
+  keywords: [
+    "AI Inference",
+    "Hugging Face",
+    "Save on costs",
+    "Billing Management",
+    "Subscription Management",
+  ],
+  openGraph: {
+    title,
+    description,
+    url: "https://valvebara.com/",
+  },
 };
 
 export default function RootLayout({
